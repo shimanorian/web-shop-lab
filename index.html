@@ -2,9 +2,30 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MurrArt</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>MurrArt — картины по номерам</h1>
+
+  <header>
+    <a href="#">MurrArt</a>
+    <button id="cartToggle">
+      Корзина
+      <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <section class="hero">
+    <h1>Картины по номерам с котиками</h1>
+    <p>Холст, краски и кисти в каждой коробке. Раскрась своего кота сам.</p>
+  </section>
+
+  <main>
+    <h2>Каталог</h2>
+    <div id="productGrid"></div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
