@@ -1,14 +1,13 @@
 const items = [
-  { id: "ginger-window", name: "Рыжий кот на подоконнике", price: 1400 },
-  { id: "black-hat", name: "Чёрная кошка среди цветов", price: 1600 },
-  { id: "kitten-yarn", name: "Котёнок с клубком ниток", price: 1200 },
-  { id: "siamese", name: "Сиамская кошка", price: 1800 },
-  { id: "maine-coon", name: "Кошка королева Бастет", price: 2200 },
-  { id: "space-cat", name: "Кот-новогодний", price: 1700 },
-  { id: "flower-cat", name: "Неоновый леопард", price: 1900 },
-  { id: "three-kittens", name: "Белый тигр", price: 2000 },
+  { id: "ginger-window", name: "Рыжий кот на подоконнике", price: 1400, image: "img/img0.png" },
+  { id: "black-hat", name: "Чёрная кошка среди цветов", price: 1600, image: "img/img2.png" },
+  { id: "kitten-yarn", name: "Котёнок с клубком ниток", price: 1200, image: "img/img3.png" },
+  { id: "siamese", name: "Сиамская кошка", price: 1800, image: "img/img4.png" },
+  { id: "maine-coon", name: "Кошка королева Бастет", price: 2200, image: "img/img5.png" },
+  { id: "space-cat", name: "Кот-новогодний", price: 1700, image: "img/img6.png" },
+  { id: "flower-cat", name: "Неоновый леопард", price: 1900, image: "img/img7.png" },
+  { id: "three-kittens", name: "Белый тигр", price: 2000, image: "img/img8.png" },
 ];
-
 const productGrid = document.getElementById("productGrid");
 
 function renderProducts() {
@@ -16,6 +15,7 @@ function renderProducts() {
   for (const item of items) {
     html += `
       <div class="product-card">
+        <img src="${item.image}" alt="${item.name}">
         <h3>${item.name}</h3>
         <p>${item.price} ₽</p>
         <button data-add="${item.id}">Добавить в корзину</button>
