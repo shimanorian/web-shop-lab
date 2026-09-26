@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #FBF6EC;
+  color: #2E2620;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #FBF6EC;
+  border-bottom: 2px solid #EBDFC9;
+}
+
+header a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #E4674B;
+  text-decoration: none;
+}
+
+#cartToggle {
+  background: #4A2E3B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.hero {
+  background: #4A2E3B;
+  color: white;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+}
+
+main {
+  padding: 40px 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
