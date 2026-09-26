@@ -26,3 +26,100 @@ function renderProducts() {
 }
 
 renderProducts();
+let basket = {};
+
+const cartPanel = document.getElementById("cartPanel");
+const cartItemsEl = document.getElementById("cartItems");
+const cartEmptyEl = document.getElementById("cartEmpty");
+const cartTotalEl = document.getElementById("cartTotal");
+const cartCountEl = document.getElementById("cartCount");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const cartToggle = document.getElementById("cartToggle");
+const cartClose = document.getElementById("cartClose");
+const overlay = document.getElementById("overlay");
+
+function addItem(id) {
+  if (basket[id]) {
+    basket[id] = basket[id] + 1;
+  } else {
+    basket[id] = 1;
+  }
+  updateCartView();
+  openCart();
+}
+
+function getTotalPrice() {
+  let total = 0;
+  for (const id in basket) {
+    const product = items.find(p => p.id === id);
+    if (product) {
+      total = total + product.price * basket[id];
+    }
+  }
+  return total;
+}
+
+function getTotalCount() {
+  let count = 0;
+  for (const id in basket) {
+    count = count + basket[id];
+  }
+  return count;
+}
+
+function updateCartView() {
+  const ids = Object.keys(basket);
+
+  cartCountEl.textContent = getTotalCount();
+  cartTotalEl.textContent = getTotalPrice() + " ₽";
+  checkoutBtn.disabled = ids.length === 0;
+  cartEmptyEl.hidden = ids.length > 0;
+
+  let html = "";
+  for (const id of ids) {
+    const product = items.find(p => p.id === id);
+    if (!product) continue;
+    const qty = basket[id];
+    html += `
+      <li>
+        <span>${product.name} × ${qty}</span>
+        <button data-remove="${id}">Удалить</button>
+      </li>
+    `;
+  }
+  cartItemsEl.innerHTML = html;
+
+  cartItemsEl.querySelectorAll("[data-remove]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      delete basket[btn.dataset.remove];
+      updateCartView();
+    });
+  });
+}
+
+function openCart() {
+  cartPanel.hidden = false;
+  overlay.hidden = false;
+}
+
+function closeCart() {
+  cartPanel.hidden = true;
+  overlay.hidden = true;
+}
+
+productGrid.addEventListener("click", (e) => {
+  if (e.target.dataset.add) {
+    addItem(e.target.dataset.add);
+  }
+});
+
+cartToggle.addEventListener("click", () => {
+  if (cartPanel.hidden) {
+    openCart();
+  } else {
+    closeCart();
+  }
+});
+
+cartClose.addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
