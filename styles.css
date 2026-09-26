@@ -50,3 +50,48 @@ main {
   max-width: 1080px;
   margin: 0 auto;
 }
+#productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.product-card {
+  background: white;
+  border: 2px solid #EBDFC9;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 0 0 8px;
+}
+
+.product-card p {
+  font-weight: bold;
+  margin: 0 0 12px;
+}
+
+.product-card button {
+  background: #E4674B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  #productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  #productGrid {
+    grid-template-columns: 1fr;
+  }
+}
