@@ -170,4 +170,38 @@ cartToggle.addEventListener("click", () => {
 
 cartClose.addEventListener("click", closeCart);
 overlay.addEventListener("click", closeCart);
+const orderModal = document.getElementById("orderModal");
+const orderClose = document.getElementById("orderClose");
+const orderForm = document.getElementById("orderForm");
+const orderSuccess = document.getElementById("orderSuccess");
+const orderSuccessClose = document.getElementById("orderSuccessClose");
+
+function openOrderModal() {
+  cartPanel.hidden = true;
+  orderModal.hidden = false;
+  overlay.hidden = false;
+  orderForm.hidden = false;
+  orderSuccess.hidden = true;
+}
+
+function closeOrderModal() {
+  orderModal.hidden = true;
+  overlay.hidden = true;
+}
+
+checkoutBtn.addEventListener("click", openOrderModal);
+orderClose.addEventListener("click", closeOrderModal);
+orderSuccessClose.addEventListener("click", closeOrderModal);
+
+orderForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  basket = {};
+  saveBasket();
+  updateCartView();
+
+  orderForm.hidden = true;
+  orderSuccess.hidden = false;
+  orderForm.reset();
+});
 updateCartView();

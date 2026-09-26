@@ -188,3 +188,75 @@ main {
   border-radius: 6px;
   cursor: pointer;
 }
+#orderModal[hidden] {
+  display: none;
+}
+
+#orderModal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+}
+
+.modal-card {
+  background: white;
+  border-radius: 10px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+#orderClose {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#orderForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#orderForm label {
+  font-size: 0.85rem;
+  color: #7A6F60;
+}
+
+#orderForm input {
+  border: 2px solid #EBDFC9;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+}
+
+#orderForm button {
+  margin-top: 8px;
+  background: #E4674B;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#orderSuccess {
+  text-align: center;
+}
+
+#orderSuccess p {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}

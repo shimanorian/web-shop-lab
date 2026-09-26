@@ -25,7 +25,48 @@
     <h2>Каталог</h2>
     <div id="productGrid"></div>
   </main>
+  <aside id="cartPanel" hidden>
+    <div class="cart-head">
+      <h2>Корзина</h2>
+      <button id="cartClose">✕</button>
+    </div>
+    <ul id="cartItems"></ul>
+    <p id="cartEmpty">Корзина пока пуста.</p>
+    <div class="cart-footer">
+      <p>Итого: <span id="cartTotal">0 ₽</span></p>
+      <button id="checkoutBtn" disabled>Оформить заказ</button>
+    </div>
+  </aside>
+  <div id="overlay" hidden></div>
+    <div id="orderModal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Оформление заказа</h2>
+        <button id="orderClose">✕</button>
+      </div>
 
+      <form id="orderForm">
+        <label for="firstName">Имя</label>
+        <input type="text" id="firstName" required>
+
+        <label for="lastName">Фамилия</label>
+        <input type="text" id="lastName" required>
+
+        <label for="address">Адрес доставки</label>
+        <input type="text" id="address" required>
+
+        <label for="phone">Контактный номер телефона</label>
+        <input type="tel" id="phone" required placeholder="+7 900 000-00-00">
+
+        <button type="submit">Создать заказ</button>
+      </form>
+
+      <div id="orderSuccess" hidden>
+        <p>Заказ создан!</p>
+        <button id="orderSuccessClose">Закрыть</button>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
