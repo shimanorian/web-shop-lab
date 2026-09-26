@@ -26,7 +26,26 @@ function renderProducts() {
 }
 
 renderProducts();
-let basket = {};
+const STORAGE_KEY = "murrart-basket";
+
+function loadBasket() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveBasket() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(basket));
+  } catch (e) {
+    // если localStorage недоступен, просто ничего не сохраняем
+  }
+}
+
+let basket = loadBasket();
 
 const cartPanel = document.getElementById("cartPanel");
 const cartItemsEl = document.getElementById("cartItems");
@@ -44,6 +63,7 @@ function addItem(id) {
   } else {
     basket[id] = 1;
   }
+  saveBasket();
   updateCartView();
   openCart();
 }
@@ -82,7 +102,12 @@ function updateCartView() {
     const qty = basket[id];
     html += `
       <li>
-        <span>${product.name} × ${qty}</span>
+        <span>${product.name}</span>
+        <div class="qty-block">
+          <button data-dec="${id}">−</button>
+          <span>${qty}</span>
+          <button data-inc="${id}">+</button>
+        </div>
         <button data-remove="${id}">Удалить</button>
       </li>
     `;
@@ -92,6 +117,28 @@ function updateCartView() {
   cartItemsEl.querySelectorAll("[data-remove]").forEach(btn => {
     btn.addEventListener("click", () => {
       delete basket[btn.dataset.remove];
+      saveBasket();
+      updateCartView();
+    });
+  });
+
+  cartItemsEl.querySelectorAll("[data-inc]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.inc;
+      basket[id] = basket[id] + 1;
+      saveBasket();
+      updateCartView();
+    });
+  });
+
+  cartItemsEl.querySelectorAll("[data-dec]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.dec;
+      basket[id] = basket[id] - 1;
+      if (basket[id] <= 0) {
+        delete basket[id];
+      }
+      saveBasket();
       updateCartView();
     });
   });
@@ -123,3 +170,4 @@ cartToggle.addEventListener("click", () => {
 
 cartClose.addEventListener("click", closeCart);
 overlay.addEventListener("click", closeCart);
+updateCartView();
