@@ -113,7 +113,13 @@ main {
   display: flex;
   flex-direction: column;
 }
+#cartPanel[hidden] {
+  display: none;
+}
 
+#overlay[hidden] {
+  display: none;
+}
 .cart-head {
   display: flex;
   justify-content: space-between;
